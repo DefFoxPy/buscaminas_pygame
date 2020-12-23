@@ -33,3 +33,7 @@ COLOR_OCULTO_2 = (162, 209, 73)
 
 # Titulo del juego
 TITLE = 'Buscaminas'
+
+IMAGENES = [None, 'numero_1.png', 'numero_2.png', 'numero_3.png', 'numero_4.png', \
+		    'numero_5.png', 'numero_6.png', 'numero_7.png', 'numero_8.png', 'mina.png', \
+		    'bandera.png']

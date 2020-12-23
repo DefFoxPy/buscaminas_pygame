@@ -15,8 +15,6 @@ class Game:
 
 		pygame.display.set_caption(TITLE)
 
-		self.tablero = Tablero()
-
 		self.running = True
 
 		self.clock = pygame.time.Clock()
@@ -31,6 +29,7 @@ class Game:
 
 	def new(self):
 		''' Inicializa una instancia del juego '''
+		self.tablero = Tablero()
 		self.run()
 
 	def run(self):
@@ -57,5 +56,5 @@ class Game:
 	def draw(self):
 		'''Dibuja todos los elemenentos en pantalla'''
 		self.surface.fill(WHITE)
-		self.tablero.mostrar(self.surface)
+		self.tablero.mostrar(self.surface, self.dir_images)
 		pygame.display.update()

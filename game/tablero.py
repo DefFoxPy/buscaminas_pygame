@@ -22,9 +22,9 @@ class Tablero:
 				casilla = Casilla(x, y)
 				self.t[x].append(casilla)
 
-	def mostrar(self, surface):
+	def mostrar(self, surface, dir_images):
 		""" Muestra cada casilla dentro del tablero """
 		for x in range(COLUMNA):
 			for y in range(FILA):
-				self.t[x][y].mostrar(surface)
+				self.t[x][y].mostrar(surface, dir_images)
 
