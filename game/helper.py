@@ -23,4 +23,4 @@ def pixeles_a_indice(pos):
 
 def coordenada_valida(x, y):
 	""" determinar si una coordenada dada en x,y esta dentro de los limites del tablero """
-	return (y >= 0 and y <= COLUMNA) and (x >= 0 and x <= FILA)
+	return (x >= 0 and x < COLUMNA) and (y >= 0 and y < FILA)

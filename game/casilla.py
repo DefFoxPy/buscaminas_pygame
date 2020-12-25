@@ -29,11 +29,20 @@ class Casilla:
 	def get_visible(self):
 		return self.visible
 
+	def get_contenido(self):
+		return self.contenido
+
 	def set_bandera(self, estado):
 		self.bandera = estado
 
 	def set_visible(self, estado):
 		self.visible = estado
+
+	def set_contenido(self, contenido):
+		if contenido >= 0 and contenido <= 10:
+			self.contenido = contenido
+		else:
+			print('Error al establecer el nuevo contenido para la casilla')
 
 	def mostrar(self, surface, dir_images):
 		""" Dibuja la casilla """

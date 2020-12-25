@@ -1,6 +1,8 @@
 # Número de filas y columnas
 COLUMNA = 10
-FILA = 10
+FILA = 8
+
+NUMERO_MINAS = 10
 
 # Atributos de las casillas
 CASILLA_LARGO = 40
@@ -12,8 +14,8 @@ CASILLA_BANDERA = 10
 # margen entre las celdas vertical
 MARGEN_Y = 55
 
-WIDTH = FILA * CASILLA_LARGO
-HEIGHT = COLUMNA * CASILLA_ALTO + MARGEN_Y
+WIDTH = COLUMNA * CASILLA_LARGO
+HEIGHT = FILA * CASILLA_ALTO + MARGEN_Y
 
 # Mouse
 CLIC_IZQUIERDO = 1

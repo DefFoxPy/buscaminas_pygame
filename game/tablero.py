@@ -9,6 +9,7 @@ class Tablero:
 		""" """
 		self.t = list()
 		self.crear()
+		self.agregar_minas()
 		
 	def crear(self):
 		""" Agrega todas las casillas para el tablero 
@@ -27,6 +28,21 @@ class Tablero:
 		for x in range(COLUMNA):
 			for y in range(FILA):
 				self.t[x][y].mostrar(surface, dir_images)
+
+	def agregar_minas(self):
+		""" por ahora agrega 10 minas de manera aleatorea """
+		from random import randint
+
+		minas_agregadas = 0
+
+		while minas_agregadas < NUMERO_MINAS:
+			x = randint(0, COLUMNA-1)
+			y = randint(0, FILA-1)
+
+			if self.t[x][y].get_contenido() != CASILLA_MINA:
+				self.t[x][y].set_contenido(CASILLA_MINA)
+				minas_agregadas += 1
+
 
 	def liberar(self, x, y):
 		pass

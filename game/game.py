@@ -65,7 +65,7 @@ class Game:
 
 					if event.button == CLIC_DERECHO:
 						if not self.tablero.get_visible(x, y):
-							self.tablero.cambiar_bandera(x, y)
+							self.tablero.cambiar_bandera(x, y)	
 
 	def update(self):
 		'''Actualiza cada fotograma del juego'''
