@@ -60,8 +60,8 @@ class Game:
 
 					if event.button == CLIC_IZQUIERDO:
 						if not self.tablero.get_bandera(x, y): 
-							self.tablero.set_visible(x, y, True)
 							self.tablero.liberar(x, y) # to do
+							self.tablero.set_visible(x, y, True)
 
 					if event.button == CLIC_DERECHO:
 						if not self.tablero.get_visible(x, y):

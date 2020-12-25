@@ -2,6 +2,7 @@
 
 from .config import *
 from .casilla import Casilla
+from .helper import *
 
 class Tablero:
 
@@ -43,9 +44,23 @@ class Tablero:
 				self.t[x][y].set_contenido(CASILLA_MINA)
 				minas_agregadas += 1
 
-
 	def liberar(self, x, y):
-		pass
+		""" """
+		# Casos bases
+		if not coordenada_valida(x, y): return
+		if self.t[x][y].get_visible(): return
+		if self.t[x][y].get_contenido() == CASILLA_MINA: return
+
+		if self.t[x][y].get_contenido() != CASILLA_MINA:
+			self.t[x][y].set_visible(True)
+
+		# Caso recursivo
+		self.liberar(x + 1, y)
+		self.liberar(x - 1, y)
+		self.liberar(x, y + 1)
+		self.liberar(x, y - 1)
+
+
 
 	def get_bandera(self, x, y):
 		""" obtiene el estado del atributo bandera de una casilla en particular """
