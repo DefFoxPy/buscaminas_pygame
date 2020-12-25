@@ -11,6 +11,7 @@ class Tablero:
 		self.t = list()
 		self.crear()
 		self.agregar_minas()
+		self.agregar_numeros()
 		
 	def crear(self):
 		""" Agrega todas las casillas para el tablero 
@@ -44,6 +45,40 @@ class Tablero:
 				self.t[x][y].set_contenido(CASILLA_MINA)
 				minas_agregadas += 1
 
+	def agregar_numeros(self):
+		""" """
+		for x in range(COLUMNA):
+			for y in range(FILA):
+				
+				if self.t[x][y].get_contenido() == CASILLA_MINA: continue
+				numero_minas = 0
+
+				if coordenada_valida(x-1, y-1) and self.t[x-1][y-1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x, y-1) and self.t[x][y-1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x+1, y-1) and self.t[x+1][y-1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x-1, y) and self.t[x-1][y].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x+1, y) and self.t[x+1][y].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x-1, y+1) and self.t[x-1][y+1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x, y+1) and self.t[x][y+1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				if coordenada_valida(x+1, y+1) and self.t[x+1][y+1].get_contenido() == CASILLA_MINA:
+					numero_minas += 1
+
+				self.t[x][y].set_contenido(numero_minas)
+
 	def liberar(self, x, y):
 		""" """
 		# Casos bases
@@ -51,14 +86,22 @@ class Tablero:
 		if self.t[x][y].get_visible(): return
 		if self.t[x][y].get_contenido() == CASILLA_MINA: return
 
-		if self.t[x][y].get_contenido() != CASILLA_MINA:
+		if self.t[x][y].get_contenido() not in [CASILLA_LIBRE, CASILLA_MINA]: # Número
+			self.t[x][y].set_visible(True)
+			return 
+
+		if self.t[x][y].get_contenido() == CASILLA_LIBRE:
 			self.t[x][y].set_visible(True)
 
 		# Caso recursivo
-		self.liberar(x + 1, y)
-		self.liberar(x - 1, y)
-		self.liberar(x, y + 1)
-		self.liberar(x, y - 1)
+		self.liberar(x-1, y)
+		self.liberar(x-1, y-1)
+		self.liberar(x, y-1)
+		self.liberar(x+1, y-1)
+		self.liberar(x+1, y)
+		self.liberar(x+1, y+1)
+		self.liberar(x, y+1)
+		self.liberar(x-1, y+1)
 
 
 
