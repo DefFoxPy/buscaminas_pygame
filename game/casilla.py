@@ -4,11 +4,6 @@ import os
 from .config import *
 from .helper import *
 
-def casilla_valida(x, y):
-	""" Determina si la coordenda y, x de una casilla es valida """
-	es_valido = (x >= 0 and  x < COLUMNA) and (y >= 0 and y < FILA)
-	return es_valido
-
 class Casilla:
 
 	def __init__(self, x, y):
@@ -27,6 +22,18 @@ class Casilla:
 		self.pos_y = CASILLA_LARGO * y + MARGEN_Y
 		self.rect = [self.pos_x, self.pos_y, CASILLA_LARGO, CASILLA_ALTO]
 		self.es_par = (x + y) % 2
+
+	def get_bandera(self):
+		return self.bandera
+
+	def get_visible(self):
+		return self.visible
+
+	def set_bandera(self, estado):
+		self.bandera = estado
+
+	def set_visible(self, estado):
+		self.visible = estado
 
 	def mostrar(self, surface, dir_images):
 		""" Dibuja la casilla """

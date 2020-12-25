@@ -2,9 +2,10 @@ import pygame
 import sys
 import os
 
-
 from .config import *
 from .tablero import Tablero
+from .helper import *
+
 
 class Game:
 
@@ -30,6 +31,7 @@ class Game:
 	def new(self):
 		''' Inicializa una instancia del juego '''
 		self.tablero = Tablero()
+		self.game_over = False
 		self.run()
 
 	def run(self):
@@ -48,10 +50,27 @@ class Game:
 				self.running = False
 				pygame.quit()
 				sys.exit()
+			# El usuario precionó una casillas
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				if not self.game_over:
+					# obtenemos el equivalente en x, y de la posicion del mouse
+					x, y = pixeles_a_indice(pygame.mouse.get_pos())
+					# en caso de que el usuario tecleo fuera del tablero salimos del ciclo
+					if not coordenada_valida(x, y): continue
+
+					if event.button == CLIC_IZQUIERDO:
+						if not self.tablero.get_bandera(x, y): 
+							self.tablero.set_visible(x, y, True)
+							self.tablero.liberar(x, y) # to do
+
+					if event.button == CLIC_DERECHO:
+						if not self.tablero.get_visible(x, y):
+							self.tablero.cambiar_bandera(x, y)
 
 	def update(self):
 		'''Actualiza cada fotograma del juego'''
 		pass
+
 
 	def draw(self):
 		'''Dibuja todos los elemenentos en pantalla'''
