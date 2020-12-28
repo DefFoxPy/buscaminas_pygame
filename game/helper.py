@@ -24,3 +24,12 @@ def pixeles_a_indice(pos):
 def coordenada_valida(x, y):
 	""" determinar si una coordenada dada en x,y esta dentro de los limites del tablero """
 	return (x >= 0 and x < COLUMNA) and (y >= 0 and y < FILA)
+
+def display_text(surface, font_type, text, size, color, pos_x, pos_y):
+	font = pygame.font.Font(font_type, size)
+
+	text = font.render(text, True, color)
+	rect = text.get_rect()
+	rect.midtop = (pos_x, pos_y)
+
+	surface.blit(text, rect)

@@ -19,6 +19,8 @@ class Game:
 
 		self.clock = pygame.time.Clock()
 
+		self.font = pygame.font.match_font(FONT)
+
 		self.dir = os.path.dirname(__file__)
 		#self.dir_sounds = os.path.join(self.dir, 'sources/sounds')
 		self.dir_images = os.path.join(self.dir, 'sources/image')
@@ -29,6 +31,7 @@ class Game:
 	def new(self):
 		self.tablero = Tablero()
 		self.game_over = False
+		self.text_final = ''
 		self.run()
 
 	def run(self):
@@ -45,6 +48,11 @@ class Game:
 				self.running = False
 				pygame.quit()
 				sys.exit()
+
+			key = pygame.key.get_pressed()
+
+			if key[pygame.K_r] and self.game_over:
+				self.new()
 			
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if not self.game_over:
@@ -59,11 +67,11 @@ class Game:
 							self.tablero.set_visible(x, y, True)
 							
 							if self.tablero.es_mina_detonada(x, y):
-								print('#DEBUG: el jugador perdió')
+								self.text_final = TEXTO_PERDIO
 								self.stop()
 
 							if self.tablero.todas_casillas_liberadas():
-								print('#DEBUG: el jugador ganó')
+								self.text_final = TEXTO_GANO
 								self.stop()
 
 					if event.button == CLIC_DERECHO:
@@ -79,4 +87,8 @@ class Game:
 	def draw(self):
 		self.surface.fill(WHITE)
 		self.tablero.mostrar(self.surface, self.dir_images)
+
+		if self.game_over:
+			display_text(self.surface, self.font, self.text_final, 24, BLACK, WIDTH//2, 10)
 		pygame.display.update()
+
