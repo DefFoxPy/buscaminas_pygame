@@ -39,7 +39,7 @@ class Casilla:
 		self.visible = estado
 
 	def set_contenido(self, contenido):
-		if contenido >= 0 and contenido <= 10:
+		if contenido >= 0 and contenido <= len(IMAGENES):
 			self.contenido = contenido
 		else:
 			print('Error al establecer el nuevo contenido para la casilla')

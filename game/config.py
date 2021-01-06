@@ -10,6 +10,7 @@ CASILLA_ALTO = 40
 CASILLA_LIBRE = 0
 CASILLA_MINA = 9
 CASILLA_BANDERA = 10
+CASILLA_EQUIS = 11
 
 # margen entre las celdas vertical
 MARGEN_Y = 55
@@ -41,4 +42,4 @@ TEXTO_PERDIO = 'Perdiste, presiona "r" para volvera jugar'
 
 IMAGENES = [None, 'numero_1.png', 'numero_2.png', 'numero_3.png', 'numero_4.png', \
 		    'numero_5.png', 'numero_6.png', 'numero_7.png', 'numero_8.png', 'mina.png', \
-		    'bandera.png']
+		    'bandera.png', 'equis.png']

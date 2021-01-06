@@ -68,6 +68,7 @@ class Game:
 							
 							if self.tablero.hay_mina(x, y):
 								self.text_final = TEXTO_PERDIO
+								self.tablero.revelar_todas_las_minas()
 								self.stop()
 
 							if self.tablero.todas_casillas_liberadas():

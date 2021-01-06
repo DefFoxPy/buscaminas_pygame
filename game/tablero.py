@@ -86,13 +86,14 @@ class Tablero:
 		1) ¿las coordenadas de la casilla son valídas?
 		2) ¿La casilla es visible?
 		3) ¿hay una mina en la casilla?
+		4) ¿está la bandera activada?
 
 		si la repuesta es no para las anteriores preguntas
 
-		4) ¿el contenido de la casilla es un número? 
+		5) ¿el contenido de la casilla es un número? 
 		   entonces establecer la casilla como visible
 
-		5) ¿la casilla no contiene nada (casilla libre)?
+		6) ¿la casilla no contiene nada (casilla libre)?
 		   entonces establecer la casilla como visible 
 
 
@@ -108,12 +109,13 @@ class Tablero:
 		if not coordenada_valida(x, y): return # 1
 		if self.t[x][y].get_visible(): return # 2
 		if self.t[x][y].get_contenido() == CASILLA_MINA: return # 3
+		if self.t[x][y].get_bandera(): return # 4
 
-		if self.t[x][y].get_contenido() not in [CASILLA_LIBRE, CASILLA_MINA]: # 4
+		if self.t[x][y].get_contenido() not in [CASILLA_LIBRE, CASILLA_MINA]: # 5
 			self.t[x][y].set_visible(True)
 			return 
 
-		if self.t[x][y].get_contenido() == CASILLA_LIBRE: # 5
+		if self.t[x][y].get_contenido() == CASILLA_LIBRE: # 6
 			self.t[x][y].set_visible(True)
 
 		# Caso recursivo
@@ -152,6 +154,21 @@ class Tablero:
 
 		return despejado
 
+	def revelar_todas_las_minas(self):
+		""" Establece como visible las casillas cuyo contenido sea una mina 
+		tambien cambia el contenido de una casilla si en esta estaba activada al bandera,
+		pero no habia ninguna mina
+		"""
+		for x in range(COLUMNA):
+			for y in range(FILA):
+				if self.get_contenido(x, y) == CASILLA_MINA and not self.get_bandera(x, y):
+					self.set_visible(x, y, True)
+
+				if self.get_contenido(x, y) != CASILLA_MINA and self.get_bandera(x, y):
+					self.set_visible(x, y, True)
+					self.set_contenido(x, y, CASILLA_EQUIS)
+					
+
 	def get_bandera(self, x, y):
 		""" obtiene el estado del atributo bandera de una casilla en particular """
 		return self.t[x][y].get_bandera()
@@ -167,6 +184,10 @@ class Tablero:
 	def set_visible(self, x, y, estado):
 		""" cambia el estado de visibilidad de una casilla en particular """
 		self.t[x][y].set_visible(estado)
+
+	def set_contenido(self, x, y, contenido):
+		""" cambia el contenido de una casilla por 'contenido' """
+		self.t[x][y].set_contenido(contenido)
 
 	def cambiar_bandera(self, x, y):
 		""" si hay bandera en una casilla la quita y viceversa """
