@@ -31,7 +31,7 @@ class Game:
 	def new(self):
 		self.tablero = Tablero()
 		self.game_over = False
-		self.text_final = ''
+		self.text_final = '' # mensaje que se mostrará al final de una partida
 		self.run()
 
 	def run(self):
@@ -66,7 +66,7 @@ class Game:
 							self.tablero.liberar(x, y)
 							self.tablero.set_visible(x, y, True)
 							
-							if self.tablero.es_mina_detonada(x, y):
+							if self.tablero.hay_mina(x, y):
 								self.text_final = TEXTO_PERDIO
 								self.stop()
 
