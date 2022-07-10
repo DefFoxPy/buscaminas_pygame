@@ -38,7 +38,7 @@ TITLE = 'Buscaminas'
 FONT = 'Arial'
 
 TEXTO_GANO   = 'Felicidades, presiona "r" para volver a jugar' 
-TEXTO_PERDIO = 'Perdiste, presiona "r" para volvera jugar'
+TEXTO_PERDIO = 'Perdiste, presiona "r" para volver a jugar'
 
 IMAGENES = [None, 'numero_1.png', 'numero_2.png', 'numero_3.png', 'numero_4.png', \
 		    'numero_5.png', 'numero_6.png', 'numero_7.png', 'numero_8.png', 'mina.png', \
