@@ -91,8 +91,8 @@ class Game:
 	def draw(self):
 		self.surface.fill(WHITE)
 		self.tablero.mostrar(self.surface, self.dir_images)
-		display_text(self.surface, self.font, "Puntaje actual: " + str(self.puntaje), 20, BLACK, WIDTH//2, 30)
-
+		display_text(self.surface, self.font, "Puntaje actual: " + str(self.puntaje), 20, BLACK, 80, 30)
+		display_text(self.surface, self.font, "Minas: " + str(self.tablero.get_minas()), 20, BLACK, WIDTH - 45,30)
 		if self.game_over:
 			display_text(self.surface, self.font, self.text_final, 20, BLACK, WIDTH//2, 10)
 		pygame.display.update()

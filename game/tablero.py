@@ -7,7 +7,7 @@ class Tablero:
 	def __init__(self):
 		self.t = list() # tablero representado como una lista de listas
 		self.crear()
-		self.agregar_minas()
+		self.num_minas = self.agregar_minas()
 		self.agregar_numeros()
 		
 	def crear(self):
@@ -36,6 +36,8 @@ class Tablero:
 			if self.t[x][y].get_contenido() != CASILLA_MINA:
 				self.t[x][y].set_contenido(CASILLA_MINA)
 				minas_agregadas += 1
+
+		return minas_agregadas
 
 	def agregar_numeros(self):
 		""" determina cual será el contenido de cada casilla según las minas se sus casillas vecinas """
@@ -191,6 +193,15 @@ class Tablero:
 
 	def cambiar_bandera(self, x, y):
 		""" si hay bandera en una casilla la quita y viceversa """
+		if self.t[x][y].get_bandera():
+			self.num_minas += 1
+		else:
+			self.num_minas -= 1
+			
 		self.t[x][y].set_bandera(not self.t[x][y].get_bandera())
+
+	def get_minas(self):
+		""" retorna el número de minas instanciadas en el tablero """
+		return self.num_minas
 
 
