@@ -2,6 +2,9 @@
 COLUMNA = 10
 FILA = 8
 
+# cantidad de puntos a ganar al liberar una casilla
+PUNTOS = 10
+
 NUMERO_MINAS = 10
 
 # Atributos de las casillas

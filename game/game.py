@@ -31,6 +31,7 @@ class Game:
 	def new(self):
 		self.tablero = Tablero()
 		self.game_over = False
+		self.puntaje = 0
 		self.text_final = '' # mensaje que se mostrará al final de una partida
 		self.run()
 
@@ -62,11 +63,13 @@ class Game:
 					if not coordenada_valida(x, y): continue
 
 					if event.button == CLIC_IZQUIERDO:
-						if not self.tablero.get_bandera(x, y): 
+						if not self.tablero.get_bandera(x, y):
+							self.puntaje += PUNTOS 
 							self.tablero.liberar(x, y)
 							self.tablero.set_visible(x, y, True)
 							
 							if self.tablero.hay_mina(x, y):
+								self.puntaje -= PUNTOS
 								self.text_final = TEXTO_PERDIO
 								self.tablero.revelar_todas_las_minas()
 								self.stop()
@@ -88,8 +91,9 @@ class Game:
 	def draw(self):
 		self.surface.fill(WHITE)
 		self.tablero.mostrar(self.surface, self.dir_images)
+		display_text(self.surface, self.font, "Puntaje actual: " + str(self.puntaje), 20, BLACK, WIDTH//2, 30)
 
 		if self.game_over:
-			display_text(self.surface, self.font, self.text_final, 24, BLACK, WIDTH//2, 10)
+			display_text(self.surface, self.font, self.text_final, 20, BLACK, WIDTH//2, 10)
 		pygame.display.update()
 
